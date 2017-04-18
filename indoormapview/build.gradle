@@ -2,15 +2,18 @@ apply plugin: 'com.android.library'
 apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'com.jfrog.bintray'
 
+group = 'sysu.mobile.limk'
+version = '0.1'
+
 android {
-    compileSdkVersion 24
+    compileSdkVersion 25
     buildToolsVersion "25.0.2"
 
     defaultConfig {
         minSdkVersion 22
-        targetSdkVersion 24
+        targetSdkVersion 25
         versionCode 1
-        versionName "1.0"
+        versionName version
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
@@ -28,23 +31,41 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:24.2.1'
+    compile 'com.android.support:appcompat-v7:25.3.1'
     testCompile 'junit:junit:4.12'
 }
 
-def siteUrl = 'https://bintray.com/widelee/IndoorMapView'      // 项目的主页
-def gitUrl = 'https://github.com/widelee/IndoorMapView.git'   // Git仓库的url
-group = "sysu.mobile.limk.indoormapview"         // Maven Group ID for the artifact，一般填你唯一的包名
+
+def siteUrl = 'https://github.com/WideLee/IndoorMapView'
+def gitUrl = 'https://github.com/WideLee/IndoorMapView.git'
+
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+bintray {
+    user = properties.getProperty("bintray.user")
+    key = properties.getProperty("bintray.apikey")
+
+    configurations = ['archives'] //When uploading configuration files
+    pkg {
+        repo = 'maven'
+        name = project.name
+        desc = 'MapView in android to display indoor floor plan'
+        websiteUrl = siteUrl
+        issueTrackerUrl = 'https://github.com/WideLee/IndoorMapView/issues'
+        vcsUrl = gitUrl
+        licenses = ['Apache-2.0']
+        labels = ['mapview', 'android', 'indoor']
+        publicDownloadNumbers = true
+    }
+}
+
 install {
     repositories.mavenInstaller {
-        // This generates POM.xml with proper parameters
         pom {
             project {
                 packaging 'aar'
-                // Add your description here
-                name 'MapView in android to display indoor floor plan'     //项目描述
+                name 'MapView in android to display indoor floor plan'
                 url siteUrl
-                // Set your license
                 licenses {
                     license {
                         name 'The Apache Software License, Version 2.0'
@@ -53,28 +74,36 @@ install {
                 }
                 developers {
                     developer {
-                        id 'widelee'        //填写的一些基本信息
+                        id 'widelee'
                         name 'Mingkuan Li'
-                        email 'limkuan24@foxmail.com'
+                        email 'limkuan24@gmail.com'
                     }
                 }
                 scm {
-                    connection gitUrl
-                    developerConnection gitUrl
+                    connection 'https://github.com/WideLee/IndoorMapView.git'
+                    developerConnection 'https://github.com/WideLee/IndoorMapView.git'
                     url siteUrl
+
                 }
             }
         }
     }
 }
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+}
+
 task sourcesJar(type: Jar) {
     from android.sourceSets.main.java.srcDirs
     classifier = 'sources'
 }
+
 task javadoc(type: Javadoc) {
     source = android.sourceSets.main.java.srcDirs
     classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
 }
+
 task javadocJar(type: Jar, dependsOn: javadoc) {
     classifier = 'javadoc'
     from javadoc.destinationDir
@@ -83,24 +112,8 @@ artifacts {
     archives javadocJar
     archives sourcesJar
 }
-Properties properties = new Properties()
-properties.load(project.rootProject.file('local.properties').newDataInputStream())
-bintray {
-    user = properties.getProperty("bintray.user")
-    key = properties.getProperty("bintray.apikey")
-    configurations = ['archives']
-    pkg {
-        repo = "maven"
-        name = "indoormapview"    //发布到JCenter上的项目名字
-        websiteUrl = siteUrl
-        vcsUrl = gitUrl
-        licenses = ["Apache-2.0"]
-        publish = true
-        version {
-            name = '0.1'
-            desc = 'Gradle Bintray Plugin 1.0 final'
-            vcsTag = '0.1'
-            attributes = ['gradle-plugin': 'com.use.less:com.use.less.gradle:gradle-useless-plugin']
-        }
-    }
+
+task findConventions << {
+    println project.getConvention()
 }
+
