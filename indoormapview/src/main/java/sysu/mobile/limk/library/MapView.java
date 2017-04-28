@@ -639,7 +639,7 @@ public class MapView extends View {
     /**
      * update my location with animation
      *
-     * @param location
+     * @param location location
      */
     public void updateMyLocation(Position location) {
         if (mMyLocationSymbol.getLocation() == null) {
