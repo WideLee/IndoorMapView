@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="MapView">
+        <attr name="debug" format="boolean" />
+        <attr name="max_scale" format="float" />
+        <attr name="min_scale" format="float" />
+        <attr name="mylocation_color" format="color" />
+        <attr name="circle_edge_color" format="color" />
+        <attr name="mylocation_range_color" format="color" />
+        <attr name="mylocation_radius" format="dimension" />
+        <attr name="mylocation_range_radius" format="dimension" />
+    </declare-styleable>
+</resources>
