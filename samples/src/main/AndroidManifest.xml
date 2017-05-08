@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="sysu.mobile.limk.indoormapview" >
+    package="sysu.mobile.limk.indoormapview"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-sdk tools:overrideLibrary="sysu.mobile.limk.library"/>
 
     <application
         android:allowBackup="true"
