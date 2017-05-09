@@ -1,9 +1,9 @@
 MapView in android to display indoor floor plan
 
-###使用方法
+### 使用方法
 - dependencies 里添加
 ```
-compile 'sysu.mobile.limk:indoormapview:0.1'
+compile 'sysu.mobile.limk:indoormapview:0.2'
 ```
 
 - 创建一个MapView
@@ -18,7 +18,7 @@ compile 'sysu.mobile.limk:indoormapview:0.1'
 ```
 
 - 调用Mapview执行相关操作
-```java
+```Java
 // 获取MapView对象
 mMapView = (MapView) findViewById(R.id.mapview);
 // 初始化MapView
