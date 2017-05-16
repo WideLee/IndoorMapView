@@ -10,7 +10,7 @@ compile 'sysu.mobile.limk:indoormapview:0.21'
 
 - 创建一个MapView
 ``` xml
-<sysu.mobile.limk.library.MapView
+<sysu.mobile.limk.library.indoormapview.MapView
     android:id="@+id/mapview"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
