@@ -6,9 +6,10 @@ import android.widget.TextView;
 
 import java.io.IOException;
 
-import sysu.mobile.limk.library.MapView;
-import sysu.mobile.limk.library.OnRealLocationMoveListener;
-import sysu.mobile.limk.library.Position;
+import sysu.mobile.limk.library.indoormapview.MapView;
+import sysu.mobile.limk.library.indoormapview.OnRealLocationMoveListener;
+import sysu.mobile.limk.library.indoormapview.Position;
+
 
 public class MainActivity extends AppCompatActivity {
 

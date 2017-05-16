@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="sysu.mobile.limk.library">
+    package="sysu.mobile.limk.library.indoormapview">
 
     <application
         android:allowBackup="true"

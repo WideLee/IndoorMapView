@@ -7,8 +7,9 @@ import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.graphics.Rect;
 
-import sysu.mobile.limk.library.BaseMapSymbol;
-import sysu.mobile.limk.library.Position;
+import sysu.mobile.limk.library.indoormapview.BaseMapSymbol;
+import sysu.mobile.limk.library.indoormapview.Position;
+
 
 public class BeaconSymbol extends BaseMapSymbol {
     private Bitmap mBitmap;

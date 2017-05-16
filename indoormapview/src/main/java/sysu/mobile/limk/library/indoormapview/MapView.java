@@ -1,4 +1,4 @@
-package sysu.mobile.limk.library;
+package sysu.mobile.limk.library.indoormapview;
 
 import android.content.Context;
 import android.content.res.TypedArray;

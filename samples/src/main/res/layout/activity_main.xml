@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context="sysu.mobile.limk.indoormapview.MainActivity">
 
-    <sysu.mobile.limk.library.MapView
+    <sysu.mobile.limk.library.indoormapview.MapView
         android:id="@+id/mapview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

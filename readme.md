@@ -1,13 +1,15 @@
 MapView in android to display indoor floor plan
 
+[ ![Download](https://api.bintray.com/packages/widelee/maven/indoormapview/images/download.svg) ](https://bintray.com/widelee/maven/indoormapview/_latestVersion)
+
 ### 使用方法
 - dependencies 里添加
 ```
-compile 'sysu.mobile.limk:indoormapview:0.2'
+compile 'sysu.mobile.limk:indoormapview:0.21'
 ```
 
 - 创建一个MapView
-```xml
+``` xml
 <sysu.mobile.limk.library.MapView
     android:id="@+id/mapview"
     android:layout_width="match_parent"
@@ -18,7 +20,7 @@ compile 'sysu.mobile.limk:indoormapview:0.2'
 ```
 
 - 调用Mapview执行相关操作
-```Java
+``` java
 // 获取MapView对象
 mMapView = (MapView) findViewById(R.id.mapview);
 // 初始化MapView

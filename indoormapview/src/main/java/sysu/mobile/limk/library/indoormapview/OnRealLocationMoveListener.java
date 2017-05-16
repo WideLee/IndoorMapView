@@ -1,4 +1,4 @@
-package sysu.mobile.limk.library;
+package sysu.mobile.limk.library.indoormapview;
 
 /**
  * Created by moziliang on 16/6/27.

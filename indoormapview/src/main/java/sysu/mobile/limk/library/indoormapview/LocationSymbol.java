@@ -1,4 +1,4 @@
-package sysu.mobile.limk.library;
+package sysu.mobile.limk.library.indoormapview;
 
 import android.graphics.Canvas;
 import android.graphics.Matrix;
