@@ -41,6 +41,7 @@ public class MapView extends View {
     private float mMinScale = 0.1f;
     private float mMaxScale = 4f;
 
+    private float mRestrictSize = 200f;
 
     // local parameters
     private float mScale = 1;
@@ -312,6 +313,33 @@ public class MapView extends View {
                         if (!mIsRealLocationMove) {
                             float delX = event.getX() - mPreviousTouchPoints[0].x;
                             float delY = event.getY() - mPreviousTouchPoints[0].y;
+
+                            // get the coor of real map
+                            float[] left_top = transformToViewCoordinate(
+                                    new float[]{0, 0});
+                            float[] right_bottom = transformToViewCoordinate(
+                                    new float[]{mMapDecoder.getWidth(), mMapDecoder.getHeight()});
+                            float[] left_bottom = transformToViewCoordinate(
+                                    new float[]{0, mMapDecoder.getHeight()});
+                            float[] right_top = transformToViewCoordinate(
+                                    new float[]{mMapDecoder.getWidth(), 0});
+
+                            float left = min(new float[]{left_top[0], right_top[0], left_bottom[0], right_bottom[0]});
+                            float right = max(new float[]{left_top[0], right_top[0], left_bottom[0], right_bottom[0]});
+
+                            float top = min(new float[]{left_top[1], right_top[1], left_bottom[1], right_bottom[1]});
+                            float bottom = max(new float[]{left_top[1], right_top[1], left_bottom[1], right_bottom[1]});
+
+                            if ((left + delX > getWidth() - mRestrictSize && delX > 0)
+                                    || (right + delX < mRestrictSize && delX < 0)) {
+                                delX = 0;
+                            }
+
+                            if ((top + delY > getHeight() - mRestrictSize && delY > 0)
+                                    || (bottom + delY < mRestrictSize && delY < 0)) {
+                                delY = 0;
+                            }
+
                             mMapMatrix.postTranslate(delX, delY);
                             calScreenRect();
                             Log.v("onTouch", "trans:" + delX + "," + delY + " matrix:" + mMapMatrix.toShortString());
@@ -695,5 +723,35 @@ public class MapView extends View {
     private Size getScreenSize(Context context) {
         DisplayMetrics dm = context.getResources().getDisplayMetrics();
         return new Size(dm.widthPixels, dm.heightPixels);
+    }
+
+    private float min(float[] data) {
+        if (data == null || data.length == 0) {
+            return Float.MAX_VALUE;
+        }
+
+        float minValue = data[0];
+        for (float d : data) {
+            if (d < minValue) {
+                minValue = d;
+            }
+        }
+
+        return minValue;
+    }
+
+    private float max(float[] data) {
+        if (data == null || data.length == 0) {
+            return Float.MIN_VALUE;
+        }
+
+        float maxValue = data[0];
+        for (float d : data) {
+            if (d > maxValue) {
+                maxValue = d;
+            }
+        }
+
+        return maxValue;
     }
 }

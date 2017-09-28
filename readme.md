@@ -5,7 +5,7 @@ MapView in android to display indoor floor plan
 ### 使用方法
 - dependencies 里添加
 ```
-compile 'sysu.mobile.limk:indoormapview:0.21'
+compile 'sysu.mobile.limk:indoormapview:0.24'
 ```
 
 - 创建一个MapView
@@ -26,3 +26,5 @@ mMapView = (MapView) findViewById(R.id.mapview);
 // 初始化MapView
 mMapView.initNewMap(getAssets().open("gogo.png"), 1, 0, new Position(652, 684));
 ```
+
+- 更新：禁止地图移出MapView
